@@ -5,8 +5,8 @@ use std::io::{stdout, BufWriter};
 
 fn main() {
     let stdout = stdout();
-    let out = b"Hello fellow Rustaceans!";
-    let width = 24;
+    let out = b"I'm the greatest!!";
+    let width = 18;
 
     let mut writer = BufWriter::new(stdout.lock());
     say(out, width, &mut writer).unwrap();
