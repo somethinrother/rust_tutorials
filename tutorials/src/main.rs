@@ -1,3 +1,5 @@
+use std::fmt;
+
 // Tuples can be used as function arguments and as return values
 fn reverse(pair: (i32, bool)) -> (bool, i32) {
     // `let` can be used to bind the members of a tuple to variables
@@ -9,6 +11,19 @@ fn reverse(pair: (i32, bool)) -> (bool, i32) {
 // The following struct is for the activity.
 #[derive(Debug)]
 struct Matrix(f32, f32, f32, f32);
+
+fn transpose(matrix: Matrix) -> Matrix {
+    let Matrix(first, second, third, fourth) = matrix;
+
+    Matrix(first, third, second, fourth)
+}
+
+impl fmt::Display for Matrix {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        // Use `self.number` to refer to each positional data point.
+        write!(f, "({}, {})", self.0, self.1)
+    }
+}
 
 fn main() {
     // PRIMITIVE TYPES
@@ -112,4 +127,6 @@ fn main() {
 
     let matrix = Matrix(1.1, 1.2, 2.1, 2.2);
     println!("{:?}", matrix);
+    println!("{:?}", transpose(matrix));
+
 }
