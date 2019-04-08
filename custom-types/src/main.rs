@@ -23,6 +23,12 @@ struct Rectangle {
     p2: Point,
 }
 
+fn rect_area(rectangle: Rectangle) -> f32 {
+    let length = rectangle.p2.x - rectangle.p1.x;
+    let height = rectangle.p2.y - rectangle.p1.y;
+    (length * height)
+}
+
 fn main() {
     // Create struct with field init shorthand
     let name = "Peter";
@@ -66,4 +72,12 @@ fn main() {
     let Pair(integer, decimal) = pair;
 
     println!("pair contains {:?} and {:?}", integer, decimal);
+
+    // Activity
+    let rectangle = Rectangle {
+        p1: Point { x: 2.0, y: 3.0 },
+        p2: Point { x: 4.0, y: 5.0 },
+    };
+
+    println!("{}", rect_area(rectangle));
 }
