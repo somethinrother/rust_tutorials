@@ -1,4 +1,5 @@
 use std::fmt;
+use std::mem;
 
 // Tuples can be used as function arguments and as return values
 fn reverse(pair: (i32, bool)) -> (bool, i32) {
@@ -12,6 +13,7 @@ fn reverse(pair: (i32, bool)) -> (bool, i32) {
 #[derive(Debug)]
 struct Matrix(f32, f32, f32, f32);
 
+// This function transposes values in the matrix struct
 fn transpose(matrix: Matrix) -> Matrix {
     let Matrix(first, second, third, fourth) = matrix;
 
@@ -23,6 +25,12 @@ impl fmt::Display for Matrix {
         // Use `self.number` to refer to each positional data point.
         write!(f, "({}, {})", self.0, self.1)
     }
+}
+
+// This function borrows a slice
+fn analyze_slice(slice: &[i32]) {
+    println!("first element of the slice: {}", slice[0]);
+    println!("the slice has {} elements", slice.len());
 }
 
 fn main() {
@@ -129,4 +137,34 @@ fn main() {
     println!("{:?}", matrix);
     println!("{:?}", transpose(matrix));
 
+    // ARRAYS & SLICES
+    println!("");
+    println!("********** ARRAYS & SLICES **********");
+    println!("");
+    // Fixed-size array (type signature is superfluous)
+    let xs: [i32; 5] = [1, 2, 3, 4, 5];
+
+    // All elements can be initialized to the same value
+    let ys: [i32; 500] = [0; 500];
+
+    // Indexing starts at 0
+    println!("first element of the array: {}", xs[0]);
+    println!("second element of the array: {}", xs[1]);
+
+    // `len` returns the size of the array
+    println!("array size: {}", xs.len());
+
+    // Arrays are stack allocated
+    println!("array occupies {} bytes", mem::size_of_val(&xs));
+
+    // Arrays can be automatically borrowed as slices
+    println!("borrow the whole array as a slice");
+    analyze_slice(&xs);
+
+    // Slices can point to a section of an array
+    println!("borrow a section of the array as a slice");
+    analyze_slice(&ys[5 .. 9]);
+
+    // Out of bound indexing causes compile error
+    println!("{}", xs[3]);
 }
