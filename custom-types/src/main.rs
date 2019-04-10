@@ -1,3 +1,5 @@
+use std::fmt;
+
 #[derive(Debug)]
 struct Person<'a> {
     name: &'a str,
@@ -16,6 +18,13 @@ struct Point {
     y: f32,
 }
 
+impl fmt::Display for Point {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        // Use `self.number` to refer to each positional data point.
+        write!(f, "({}, {})", self.x, self.y)
+    }
+}
+
 // Structs can be reused as fields of another struct
 #[allow(dead_code)]
 struct Rectangle {
@@ -27,6 +36,18 @@ fn rect_area(rectangle: Rectangle) -> f32 {
     let length = rectangle.p2.x - rectangle.p1.x;
     let height = rectangle.p2.y - rectangle.p1.y;
     (length * height)
+}
+
+fn square(point: Point, float: f32) -> Rectangle {
+    let new_point = Point { x: (point.x + float), y: (point.y + float) };
+    Rectangle { p1: point, p2: new_point }
+}
+
+impl fmt::Display for Rectangle {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        // Use `self.number` to refer to each positional data point.
+        write!(f, "({}, {})", self.p1, self.p2)
+    }
 }
 
 fn main() {
@@ -80,4 +101,9 @@ fn main() {
     };
 
     println!("{}", rect_area(rectangle));
+
+    let point = Point { x: 2.0, y: 3.0 };
+    let square = square(point, 5.2);
+
+    println!("Look at this square: {}", square);
 }
