@@ -29,7 +29,21 @@ fn inspect(event: WebEvent) {
     }
 }
 
+// USAGE EXAMPLE ENUMS
+enum Status {
+    Rich,
+    Poor,
+}
+
+enum Work {
+    Civilian,
+    Soldier,
+}
+
 fn main() {
+    // ENUMS BASICS
+    println!("********** ENUMS BASICS **********");
+    println!("");
     let pressed = WebEvent::KeyPress('x');
     // `to_owned()` creates an owned `String` from a string slice.
     let pasted = WebEvent::Paste("my text".to_owned());
@@ -42,4 +56,45 @@ fn main() {
     inspect(click);
     inspect(load);
     inspect(unload);
+
+    // ENUMS USAGE
+    println!("");
+    println!("********** ENUMS USAGE **********");
+    println!("");
+    // Explicitly `use` each name so they are available without
+    // manual scoping.
+    use Status::{ Poor, Rich };
+    // Automatically `use` each name inside `Work`.
+    use Work::*;
+
+    // Equivalent to `Status::Poor`.
+    let poor = Poor;
+    let rich = Rich;
+    // Equivalent to `Work::Civilian`.
+    let civilian = Civilian;
+    let soldier = Soldier;
+
+    match poor {
+        // Note the lack of scoping because of the explicit `use` above.
+        Rich => println!("The rich have lots of money!"),
+        Poor => println!("The poor have no money..."),
+    }
+
+    match rich {
+        // Note the lack of scoping because of the explicit `use` above.
+        Rich => println!("The rich have lots of money!"),
+        Poor => println!("The poor have no money..."),
+    }
+
+    match civilian {
+        // Note again the lack of scoping.
+        Civilian => println!("Civilians work!"),
+        Soldier  => println!("Soldiers fight!"),
+    }
+
+    match soldier {
+        // Note again the lack of scoping.
+        Civilian => println!("Civilians work!"),
+        Soldier  => println!("Soldiers fight!"),
+    }
 }
