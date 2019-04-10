@@ -1,0 +1,1 @@
+/Users/jamesneilson/Documents/personal_projects/rust_tutorials/variable-bindings/target/debug/variable-bindings.dSYM: /Users/jamesneilson/Documents/personal_projects/rust_tutorials/variable-bindings/src/main.rs
