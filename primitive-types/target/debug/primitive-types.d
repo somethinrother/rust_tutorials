@@ -1,0 +1,1 @@
+/Users/jamesneilson/Documents/personal_projects/rust_tutorials/primitive-types/target/debug/primitive-types.dSYM: /Users/jamesneilson/Documents/personal_projects/rust_tutorials/primitive-types/src/main.rs
