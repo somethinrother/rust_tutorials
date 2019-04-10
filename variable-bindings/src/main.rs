@@ -1,4 +1,8 @@
 fn main() {
+    // VARIABLE BINDINGS
+    println!("");
+    println!("********** VARIABLE BINDINGS **********");
+    println!("");
     let an_integer = 1u32;
     let a_boolean = true;
     let unit = ();
@@ -16,4 +20,22 @@ fn main() {
 
     let _noisy_unused_variable = 2u32;
     // FIXME ^ Prefix with an underscore to suppress the warning
+
+    // MUTABILITY
+    println!("");
+    println!("********** MUTABILITY **********");
+    println!("");
+    let _immutable_binding = 1;
+    let mut mutable_binding = 1;
+
+    println!("Before mutation: {}", mutable_binding);
+
+    // Ok
+    mutable_binding += 1;
+
+    println!("After mutation: {}", mutable_binding);
+
+    // Error!
+    // _immutable_binding += 1;
+    // FIXME ^ Comment out this line
 }
